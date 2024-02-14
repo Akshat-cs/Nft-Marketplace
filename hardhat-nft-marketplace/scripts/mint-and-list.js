@@ -17,7 +17,6 @@ async function mintAndList() {
     console.log("Listing NFT on marketplace...")
     const listTx = await nftMarketplace.listItem(basicNft.address, tokenId, PRICE)
     const listTxReceipt = await listTx.wait(1)
-    console.log(`listTxReceipt: ${JSON.stringify(listTxReceipt)}`)
     console.log("Listed...")
 
     if (network.config.chainId == "31337") {

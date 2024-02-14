@@ -6,6 +6,7 @@ import subgraphQueries from "../constants/subgraphQueries"
 import GET_ACTIVE_ITEMS from "../constants/subgraphQueries"
 import { useQuery } from "@apollo/client"
 import NFTBox from "../components/NFTBox"
+import BarLoader from "react-spinners/BarLoader"
 
 export default function Home() {
     const { isWeb3Enabled, chainId } = useMoralis()
@@ -19,7 +20,9 @@ export default function Home() {
             <div className="flex flex-wrap">
                 {isWeb3Enabled ? (
                     loading || !listedNfts ? (
-                        <div>Loading...</div>
+                        <div className="flex justify-center items-center w-screen h-96">
+                            <BarLoader color={"#030303"} size={60} />
+                        </div>
                     ) : (
                         listedNfts.activeItems.map((nft) => {
                             console.log(nft)

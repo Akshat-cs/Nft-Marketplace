@@ -10,6 +10,7 @@ const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || "https://eth-sepolia"
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0xkey"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "key"
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "key"
+const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL || "https://eth-mumbai"
 
 module.exports = {
     defaultNetwork: "hardhat",
@@ -22,6 +23,12 @@ module.exports = {
             chainId: 11155111,
             blockConfirmations: 6,
             url: SEPOLIA_RPC_URL,
+            accounts: [PRIVATE_KEY],
+        },
+        mumbai: {
+            chainId: 80001,
+            blockConfirmations: 6,
+            url: MUMBAI_RPC_URL,
             accounts: [PRIVATE_KEY],
         },
         localhost: {
