@@ -5,6 +5,7 @@ const verify = async (contractAddress, args) => {
     try {
         await run("verify:verify", {
             address: contractAddress,
+            contract: "contracts/NFTMarketplace_flattened.sol:NFTMarketplace_flattened",
             constructorArguments: args,
         })
     } catch (e) {

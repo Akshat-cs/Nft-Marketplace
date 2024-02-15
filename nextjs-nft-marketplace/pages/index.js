@@ -11,7 +11,8 @@ import BarLoader from "react-spinners/BarLoader"
 export default function Home() {
     const { isWeb3Enabled, chainId } = useMoralis()
     const chainString = chainId ? parseInt(chainId) : "31337"
-    const marketplaceAddress = networkMapping[chainString].NftMarketplace[0]
+    console.log(`chainID:${parseInt(chainId)}`)
+    const marketplaceAddress = networkMapping[chainString].NFTMarketplace_flattened[0]
     const { loading, error, data: listedNfts } = useQuery(GET_ACTIVE_ITEMS)
 
     return (
@@ -25,7 +26,6 @@ export default function Home() {
                         </div>
                     ) : (
                         listedNfts.activeItems.map((nft) => {
-                            console.log(nft)
                             const { price, nftAddress, seller, tokenId } = nft
                             return (
                                 <div>

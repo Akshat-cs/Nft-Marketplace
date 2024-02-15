@@ -264,7 +264,7 @@ error NftMarketplace__PriceMustBeAboveZero();
 // Error thrown for isNotOwner modifier
 // error IsNotOwner()
 
-contract NftMarketplace is ReentrancyGuard {
+contract NFTMarketplace_flattened is ReentrancyGuard {
     struct Listing {
         uint256 price;
         address seller;

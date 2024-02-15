@@ -1,7 +1,7 @@
 require("@nomiclabs/hardhat-ethers")
 require("hardhat-deploy")
 require("@nomiclabs/hardhat-waffle")
-require("@nomiclabs/hardhat-etherscan")
+require("@nomicfoundation/hardhat-verify")
 require("solidity-coverage")
 require("hardhat-gas-reporter")
 require("dotenv").config()
@@ -9,6 +9,7 @@ require("dotenv").config()
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || "https://eth-sepolia"
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0xkey"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "key"
+const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "key"
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "key"
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL || "https://eth-mumbai"
 
@@ -37,7 +38,17 @@ module.exports = {
         },
     },
     etherscan: {
-        apiKey: ETHERSCAN_API_KEY,
+        apiKey: {
+            //ethereum
+            mainnet: ETHERSCAN_API_KEY,
+            ropsten: ETHERSCAN_API_KEY,
+            rinkeby: ETHERSCAN_API_KEY,
+            goerli: ETHERSCAN_API_KEY,
+            kovan: ETHERSCAN_API_KEY,
+            //polygon
+            polygon: POLYGONSCAN_API_KEY,
+            polygonMumbai: POLYGONSCAN_API_KEY,
+        },
     },
     gasReporter: {
         enabled: false,
@@ -49,13 +60,16 @@ module.exports = {
     solidity: {
         compilers: [
             {
+                version: "0.8.0",
+            },
+            {
                 version: "0.8.18",
             },
             {
-                version: "0.8.24",
+                version: "0.8.20",
             },
             {
-                version: "0.8.4",
+                version: "0.8.7",
             },
         ],
     },
