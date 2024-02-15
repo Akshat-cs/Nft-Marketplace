@@ -155,7 +155,7 @@
           { "internalType": "uint256", "name": "price", "type": "uint256" },
           { "internalType": "address", "name": "seller", "type": "address" }
         ],
-        "internalType": "struct NFTMarketplace_flattened.Listing",
+        "internalType": "struct NftMarketplace.Listing",
         "name": "",
         "type": "tuple"
       }
