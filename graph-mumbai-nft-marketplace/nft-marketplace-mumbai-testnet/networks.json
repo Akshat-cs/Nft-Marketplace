@@ -1,8 +1,8 @@
 {
   "mumbai": {
-    "NftMarketplace": {
-      "address": "0x31F082810EB437468E2370223ca83634d2DB79F1",
-      "startBlock": 45915221
+    "Contract": {
+      "address": "0x29dBf2AABA6D6B80Fe48Fcf543c7A3B5FbAC8a51",
+      "startBlock": 45938257
     }
   }
 }

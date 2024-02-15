@@ -2,7 +2,7 @@ import {
   ItemBought as ItemBoughtEvent,
   ItemCanceled as ItemCanceledEvent,
   ItemListed as ItemListedEvent
-} from "../generated/NftMarketplace/NftMarketplace"
+} from "../generated/Contract/Contract"
 import { ItemBought, ItemCanceled, ItemListed } from "../generated/schema"
 
 export function handleItemBought(event: ItemBoughtEvent): void {
