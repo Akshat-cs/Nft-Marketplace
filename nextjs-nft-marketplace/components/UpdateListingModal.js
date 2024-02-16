@@ -14,6 +14,7 @@ export default function UpdateListingModal({
     const dispatch = useNotification()
 
     const [priceToUpdateListingWith, setPriceToUpdateListingWith] = useState(0)
+    const [disabled, setDisabled] = useState(false)
 
     const handleUpdateListingSuccess = async (tx) => {
         await tx.wait(1)
@@ -23,6 +24,7 @@ export default function UpdateListingModal({
             title: "Listing updated - please refresh",
             position: "topR",
         })
+        setDisabled(false)
         onClose && onClose()
         setPriceToUpdateListingWith("0")
     }
@@ -35,6 +37,7 @@ export default function UpdateListingModal({
             title: "Listing canceled - please refresh",
             position: "topR",
         })
+        setDisabled(false)
         onClose && onClose()
     }
 
@@ -60,34 +63,44 @@ export default function UpdateListingModal({
     })
 
     return (
-        <Modal
-            isVisible={isVisible}
-            onCancel={() => {
-                cancelListing({
-                    onError: (error) => {
-                        console.log(error)
-                    },
-                    onSuccess: handleCancelListingSuccess,
-                })
-            }}
-            onCloseButtonPressed={onClose}
-            onOk={() => {
-                updateListing({
-                    onError: (error) => {
-                        console.log(error)
-                    },
-                    onSuccess: handleUpdateListingSuccess,
-                })
-            }}
-        >
-            <Input
-                label="Update listing price in L1 Currency (ETH)"
-                name="New listing price"
-                type="number"
-                onChange={(event) => {
-                    setPriceToUpdateListingWith(event.target.value)
+        <>
+            <Modal
+                cancelText="Cancel listing"
+                okText="Update listing"
+                isVisible={isVisible}
+                isCancelDisabled={disabled}
+                isOkDisabled={disabled}
+                onCancel={() => {
+                    setDisabled(true)
+                    cancelListing({
+                        onError: (error) => {
+                            console.log(error)
+                            setDisabled(false)
+                        },
+                        onSuccess: handleCancelListingSuccess,
+                    })
                 }}
-            />
-        </Modal>
+                onCloseButtonPressed={onClose}
+                onOk={() => {
+                    setDisabled(true)
+                    updateListing({
+                        onError: (error) => {
+                            console.log(error)
+                            setDisabled(false)
+                        },
+                        onSuccess: handleUpdateListingSuccess,
+                    })
+                }}
+            >
+                <Input
+                    label="Update listing price in L1 Currency (MATIC)"
+                    name="New listing price"
+                    type="number"
+                    onChange={(event) => {
+                        setPriceToUpdateListingWith(event.target.value)
+                    }}
+                />
+            </Modal>
+        </>
     )
 }

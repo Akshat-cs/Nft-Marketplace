@@ -74,7 +74,6 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
     }
 
     useEffect(() => {
-        console.log("isWeb3Enabled:", isWeb3Enabled)
         if (isWeb3Enabled) {
             updateUI()
         }
@@ -89,7 +88,9 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
         isOwnedByUser
             ? setShowModal(true)
             : buyItem({
-                  onError: (error) => console.log(error),
+                  onError: (error) => {
+                      console.log(error)
+                  },
                   onSuccess: handleBuyItemSuccess,
               })
     }
@@ -98,7 +99,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
         await tx.wait(1)
         dispatch({
             type: "success",
-            message: "Item bought!",
+            message: " Item bought!",
             title: "Item bought",
             position: "topR",
         })
@@ -135,7 +136,7 @@ export default function NFTBox({ price, nftAddress, tokenId, marketplaceAddress,
                                         width="200px"
                                     />
                                     <div className="font-bold">
-                                        {ethers.utils.formatUnits(price, "ether")} ETH
+                                        {ethers.utils.formatUnits(price, "ether")} MATIC
                                     </div>
                                 </div>
                             </div>

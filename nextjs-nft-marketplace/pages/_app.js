@@ -7,7 +7,7 @@ import { NotificationProvider } from "web3uikit"
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: "https://api.studio.thegraph.com/query/62327/nft-marketplace/version/latest",
+    uri: "https://api.studio.thegraph.com/query/62327/nft-marketplace-mumbai-testnet/v0.0.1",
 })
 
 function MyApp({ Component, pageProps }) {
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
             <Head>
                 <title>NFT Marketplace</title>
                 <meta name="description" content="NFT Marketplace" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon-32X32.png" />
             </Head>
             <MoralisProvider initializeOnMount={false}>
                 <ApolloProvider client={client}>
